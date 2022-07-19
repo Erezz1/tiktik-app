@@ -23,8 +23,8 @@ const Sidebar: FC = () => {
             >
                 {
                     showSidebar
-                        ? (<ImCancelCircle />)
-                        : (<AiOutlineMenu />)
+                        ? <ImCancelCircle />
+                        : <AiOutlineMenu />
                 }
             </div>
 

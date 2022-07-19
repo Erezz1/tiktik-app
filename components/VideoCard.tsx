@@ -28,12 +28,18 @@ const VideoCard: FC<IProps> = ({ post }) => {
         }
     }
 
+    useEffect( () => {
+        if ( videoRef?.current ) {
+            videoRef.current.muted = isVideoMuted;
+        }
+    }, [ isVideoMuted ]);
+
     return (
         <div className="flex flex-col border-b-2 border-gray-200 pb-6">
             <div>
                 <div className="flex gap-3 p-2 cursor-pointer font-semibold rounded">
                     <div className="md:w-16 md:h-16 w-10 h-10">
-                        <Link href="/" passHref>
+                        <Link href={`/profile/${ post.postedBy._id }`} passHref>
                             <>
                             <Image
                                 width={62}
@@ -48,7 +54,7 @@ const VideoCard: FC<IProps> = ({ post }) => {
                     </div>
 
                     <div>
-                        <Link href="/" passHref>
+                        <Link href={`/profile/${ post.postedBy._id }`} passHref>
                             <div className="flex items-center gap-2">
                                 <p className="flex gap-2 items-center md:text-md font-bold text-primary">
                                     { post.postedBy.userName }
@@ -68,7 +74,7 @@ const VideoCard: FC<IProps> = ({ post }) => {
                             src={ post.video.asset.url }
                             loop
                             ref={ videoRef }
-                            className="lg:w-[600px] h-[300px] md:h-[400px] lg:h-[530px] w-[200px] rounded-2xl cursor-pointer bg-gray-100"
+                            className="md:w-[600px] h-[300px] md:h-[400px] lg:h-[530px] w-[200px] rounded-2xl cursor-pointer bg-gray-100"
                         ></video>
                     </Link>
 

@@ -6,7 +6,7 @@ import { MdDelete } from 'react-icons/md';
 import { SanityAssetDocument } from '@sanity/client';
 
 import { useAuthStore } from '../store/authStore';
-import { client, topics } from '../utils';
+import { BASE_URL, client, topics } from '../utils';
 
 const Upload: FC = () => {
 
@@ -66,7 +66,7 @@ const Upload: FC = () => {
                 topic: category
             }
 
-            await axios.post('http://localhost:3000/api/post', document );
+            await axios.post(`${ BASE_URL }/api/post`, document );
             router.push('/');
         }
     }
@@ -144,14 +144,14 @@ const Upload: FC = () => {
                 </div>
 
                 <div className="flex flex-col gap-3 pb-10">
-                    <label className="text-md font-medium">Caption</label>
+                    <label className="text-md font-medium">Titulo</label>
                     <input
                         type="text"
                         value={ caption }
                         onChange={ event => setCaption( event.target.value ) }
                         className="rounded outline-none text-md border-2 border-gray-200 p-2"
                     />
-                    <label className="text-md font-medium">Choose a Category</label>
+                    <label className="text-md font-medium">Escoge una categoria</label>
                     <select
                         onChange={ event => setCategory( event.target.value ) }
                         className="outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer"
@@ -173,7 +173,7 @@ const Upload: FC = () => {
                             type="button"
                             className="border-gray-300 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
                         >
-                            Discard
+                            Descartar
                         </button>
 
                         <button
